@@ -14,22 +14,34 @@ namespace CitasMedicasApp.Areas.Admin.Controllers
             _context = context;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
-            var departamentos = _context.Departamentos.ToList();
+            var departamentos = _context.Departamentos.OrderByDescending(d => d.FechaCreacion).ToList();
             ViewBag.Departamentos = departamentos;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Crear(string nombre, string siglas, string descripcion)
+        public IActionResult Crear()
         {
+            var nombre = Request.Form["nombre"];
+            var siglas = Request.Form["siglas"];
+            var descripcion = Request.Form["descripcion"];
+
             if (string.IsNullOrWhiteSpace(nombre) || string.IsNullOrWhiteSpace(siglas))
             {
                 TempData["Error"] = "Nombre y siglas son obligatorios.";
                 return RedirectToAction("Index");
             }
+
+            if (_context.Departamentos.Any(d => d.Nombre == nombre || d.Siglas == siglas))
+            {
+                TempData["Error"] = "Ya existe un departamento con ese nombre o siglas.";
+                return RedirectToAction("Index");
+            }
+
             var departamento = new Departamento
             {
                 Nombre = nombre,
@@ -44,3 +56,4 @@ namespace CitasMedicasApp.Areas.Admin.Controllers
         }
     }
 }
+       

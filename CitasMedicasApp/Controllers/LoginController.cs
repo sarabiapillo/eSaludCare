@@ -45,7 +45,11 @@ namespace CitasMedicasApp.Controllers
 
             var hashed = HashPassword(contrasena);
             var usuario = _context.Usuarios
-                .Include(u => u.Rol) // Necesita Microsoft.EntityFrameworkCore
+                .Include(u => u.Rol)
+                // Si tienes migraciones pendientes, asegúrate de haber ejecutado:
+                // dotnet ef migrations add AddFotoPerfilToUsuario
+                // dotnet ef database update
+                // para que la columna FotoPerfil exista en la base de datos.
                 .FirstOrDefault(u => u.Correo == correo && u.Contrasena == hashed);
 
             if (usuario != null)

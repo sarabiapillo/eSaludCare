@@ -1,9 +1,38 @@
+@model CitasMedicasApp.Models.Usuario
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     ViewData["Title"] = "Perfil Admin";
 }
 
-<div class="text-center mt-5">
-    <h1 class="fw-bold mb-4" style="color:#1dc8e9;">Mi Perfil (Admin)</h1>
-    <p class="lead">Aquí puedes ver y editar tu información de administrador.</p>
+<div class="container py-4">
+    <h1 class="fw-bold mb-4 text-center" style="color:#1dc8e9;">Mi Perfil (Admin)</h1>
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success text-center">@TempData["Mensaje"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger text-center">@TempData["Error"]</div>
+    }
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <form asp-area="Admin" asp-controller="Perfil" asp-action="Editar" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="mb-3 text-center">
+                    <img src="@(Model?.FotoPerfil ?? "/img/default-user.png")" alt="Foto de perfil" class="rounded-circle" style="width:120px;height:120px;object-fit:cover;">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" value="@Model?.Nombre" required />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Foto de perfil</label>
+                    <input type="file" name="fotoPerfil" class="form-control" accept="image/*" />
+                </div>
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-success">Guardar cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

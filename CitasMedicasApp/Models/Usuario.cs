@@ -16,6 +16,8 @@ namespace CitasMedicasApp.Models
         [Required]
         public string Contrasena { get; set; }
 
+        public string FotoPerfil { get; set; } // Ruta o nombre de archivo de la foto
+
         [ForeignKey("Rol")]
         public int RolId { get; set; }
         public Rol Rol { get; set; }

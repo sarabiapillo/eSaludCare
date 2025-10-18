@@ -8,22 +8,23 @@
             <h2 class="mb-4 text-center">Iniciar Sesión</h2>
             @if (ViewBag.Mensaje != null)
             {
-                <div class="alert alert-success text-center">@ViewBag.Mensaje</div>
+                <div class="alert alert-danger text-center">@ViewBag.Mensaje</div>
             }
-            <form asp-action="Index" method="post">
+            <form asp-controller="Login" asp-action="Index" method="post" autocomplete="off">
+                @Html.AntiForgeryToken()
                 <div class="mb-3">
                     <label for="correo" class="form-label">Correo electrónico</label>
-                    <input type="email" class="form-control" id="correo" name="correo" required />
+                    <input type="email" class="form-control" id="correo" name="correo" required autocomplete="username" />
                 </div>
                 <div class="mb-3">
                     <label for="contrasena" class="form-label">Contraseña</label>
-                    <input type="password" class="form-control" id="contrasena" name="contrasena" required />
+                    <input type="password" class="form-control" id="contrasena" name="contrasena" required autocomplete="current-password" />
                 </div>
                 <div class="d-grid mb-2">
                     <button type="submit" class="btn btn-primary">Entrar</button>
                 </div>
                 <div class="text-center">
-                    <a asp-action="Registro" class="link-primary">¿No tienes cuenta? Regístrate</a>
+                    <a asp-controller="Login" asp-action="Registro" class="link-primary">¿No tienes cuenta? Regístrate</a>
                 </div>
             </form>
         </div>
