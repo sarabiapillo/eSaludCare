@@ -1,0 +1,128 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Panel Cliente</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        .navbar-client {
+            background: linear-gradient(90deg, #1dc8e9 0%, #17b8d6 100%);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .navbar-client .navbar-brand,
+        .navbar-client .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+        }
+        .navbar-client .nav-link {
+            padding: 0.5rem 1rem;
+            margin: 0 0.2rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .navbar-client .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #eafff7 !important;
+        }
+        .navbar-client .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #eafff7 !important;
+            transform: translateY(-1px);
+        }
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-icon {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+        .logout-link {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .logout-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .container.py-4 {
+            min-height: calc(100vh - 80px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-client shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="@Url.Action("Index", "Cliente", new { area = "Cliente" })">
+                <i class="fas fa-heartbeat"></i>
+                eSaludCare Cliente
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#clienteNavbar" aria-controls="clienteNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="clienteNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Cliente" ? "active" : "")"
+                           href="@Url.Action("Index", "Cliente", new { area = "Cliente" })">
+                            <i class="nav-icon fas fa-home"></i>
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Citas" ? "active" : "")"
+                           href="@Url.Action("Index", "Citas", new { area = "Cliente" })">
+                            <i class="nav-icon fas fa-calendar-check"></i>
+                            Citas
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Perfil" ? "active" : "")"
+                           href="@Url.Action("Index", "Perfil", new { area = "Cliente" })">
+                            <i class="nav-icon fas fa-user"></i>
+                            Perfil
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Departamentos" ? "active" : "")"
+                           href="@Url.Action("Index", "Departamentos", new { area = "Cliente" })">
+                            <i class="nav-icon fas fa-hospital"></i>
+                            Departamentos
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.RouteData.Values["controller"]?.ToString() == "Servicios" ? "active" : "")"
+                           href="@Url.Action("Index", "Servicios", new { area = "Cliente" })">
+                            <i class="nav-icon fas fa-briefcase-medical"></i>
+                            Servicios
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link logout-link" href="@Url.Action("Index", "Login", new { area = "" })">
+                            <i class="nav-icon fas fa-sign-out-alt"></i>
+                            Cerrar sesión
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container py-4">
+        @RenderBody()
+    </div>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

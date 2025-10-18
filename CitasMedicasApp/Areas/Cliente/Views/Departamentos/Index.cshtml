@@ -1,0 +1,80 @@
+@{
+    Layout = "~/Areas/Cliente/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Departamentos";
+    var departamentos = ViewBag.Departamentos as IEnumerable<CitasMedicasApp.Models.Departamento>;
+}
+
+<div class="container py-4">
+    <h1 class="fw-bold mb-4 text-center" style="color:#1dc8e9;">Departamentos</h1>
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success text-center">@TempData["Mensaje"]</div>
+    }
+    <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#crearDepartamentoModal">
+            <i class="fas fa-plus"></i> Crear Departamento
+        </button>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-info">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Siglas</th>
+                    <th>Descripción</th>
+                    <th>Fecha de Creación</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (departamentos != null)
+                {
+                    foreach (var d in departamentos)
+                    {
+                        <tr>
+                            <td>@d.Nombre</td>
+                            <td>@d.Siglas</td>
+                            <td>@d.Descripcion</td>
+                            <td>@d.FechaCreacion.ToString("yyyy-MM-dd")</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal Crear Departamento -->
+<div class="modal fade" id="crearDepartamentoModal" tabindex="-1" aria-labelledby="crearDepartamentoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-area="Cliente" asp-controller="Departamentos" asp-action="Crear" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="crearDepartamentoModalLabel">Crear Departamento</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-2">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Siglas</label>
+                        <input type="text" name="siglas" class="form-control" maxlength="10" required />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Descripción</label>
+                        <textarea name="descripcion" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Crear Departamento</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+            </form>
+        </div>
+    </div>
+</div>

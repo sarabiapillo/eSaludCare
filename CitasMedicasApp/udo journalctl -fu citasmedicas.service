@@ -1,0 +1,6 @@
+● citasmedicas.service - CitasMedicasApp ASP.NET Core App
+     Loaded: loaded (]8;;file://srv847261/etc/systemd/system/citasmedicas.service/etc/systemd/system/citasmedicas.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)
+     Active: activating (auto-restart) (Result: exit-code) since Sat 2025-10-18 09:09:43 UTC; 4s ago
+    Process: 1984217 ExecStart=/usr/bin/dotnet /var/www/CitasMedicasApp/CitasMedicasApp/CitasMedicasApp.dll [0;1;31m(code=exited, status=1/FAILURE)[0m
+   Main PID: 1984217 (code=exited, status=1/FAILURE)
+        CPU: 752ms

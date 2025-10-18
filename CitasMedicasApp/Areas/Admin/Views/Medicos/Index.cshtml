@@ -1,0 +1,120 @@
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Médicos";
+    var medicos = ViewBag.Medicos as IEnumerable<dynamic>;
+    var departamentos = ViewBag.Departamentos as IEnumerable<CitasMedicasApp.Models.Departamento>;
+}
+
+<div class="container py-4">
+    <h1 class="fw-bold mb-4 text-center" style="color:#1dc8e9;">Gestión de Médicos</h1>
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success text-center">@TempData["Mensaje"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger text-center">@TempData["Error"]</div>
+    }
+    <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#crearMedicoModal">
+            <i class="fas fa-user-md"></i> Crear Médico
+        </button>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-info">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Especialidad</th>
+                    <th>Cédula</th>
+                    <th>Experiencia (años)</th>
+                    <th>Departamento</th>
+                    <th>Fecha Contratación</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (medicos != null)
+                {
+                    foreach (var m in medicos)
+                    {
+                        <tr>
+                            <td>@m.Nombre @m.Apellido</td>
+                            <td>@m.Correo</td>
+                            <td>@m.Especialidad</td>
+                            <td>@m.NumeroCedula</td>
+                            <td>@m.ExperienciaAnios</td>
+                            <td>@m.Departamento</td>
+                            <td>@(m.FechaContratacion?.ToString("yyyy-MM-dd") ?? "")</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal Crear Médico -->
+<div class="modal fade" id="crearMedicoModal" tabindex="-1" aria-labelledby="crearMedicoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form asp-area="Admin" asp-controller="Medicos" asp-action="CrearMedico" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="crearMedicoModalLabel">Crear Médico</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-2">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" name="nombre" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Apellido</label>
+                        <input type="text" name="apellido" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Correo</label>
+                        <input type="email" name="correo" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Contraseña</label>
+                        <input type="password" name="contrasena" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Especialidad</label>
+                        <input type="text" name="especialidad" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Número de Cédula</label>
+                        <input type="text" name="numeroCedula" class="form-control" required />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Experiencia (años)</label>
+                        <input type="number" name="experienciaAnios" class="form-control" min="0" value="0" />
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Departamento</label>
+                        <select name="idDepartamento" class="form-select">
+                            <option value="">Seleccione...</option>
+                            @if (departamentos != null)
+                            {
+                                foreach (var d in departamentos)
+                                {
+                                    <option value="@d.IdDepartamento">@d.Nombre</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-2">
+                        <label class="form-label">Fecha de Contratación</label>
+                        <input type="date" name="fechaContratacion" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success">Crear Médico</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

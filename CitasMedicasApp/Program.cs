@@ -30,6 +30,11 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// Asegúrate de que la ruta de áreas esté antes que la ruta por defecto
+app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Admin}/{action=Index}/{id?}");
+
 app.MapControllerRoute(
     name: "departamentos",
     pattern: "Departamentos",
@@ -61,11 +66,27 @@ app.MapControllerRoute(
     defaults: new { controller = "Citas", action = "Index" });
 
 app.MapControllerRoute(
-    name: "areas",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-
-app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Citas}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "crear_departamento_admin",
+    pattern: "Admin/Departamentos/Crear",
+    defaults: new { area = "Admin", controller = "Departamentos", action = "Crear" });
+
+app.MapControllerRoute(
+    name: "crear_medico_admin",
+    pattern: "Admin/Medicos/CrearMedico",
+    defaults: new { area = "Admin", controller = "Medicos", action = "CrearMedico" });
+
+app.MapControllerRoute(
+    name: "crear_servicio_admin",
+    pattern: "Admin/Servicios/Crear",
+    defaults: new { area = "Admin", controller = "Servicios", action = "Crear" });
+
+app.MapControllerRoute(
+    name: "crear_departamento_cliente",
+    pattern: "Cliente/Departamentos/Crear",
+    defaults: new { area = "Cliente", controller = "Departamentos", action = "Crear" });
 
 app.Run();
