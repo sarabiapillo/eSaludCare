@@ -1,0 +1,27 @@
+@{
+    ViewData["Title"] = "Citas Médicas";
+}
+
+<div class="d-flex align-items-center justify-content-center" style="min-height: 80vh; background: #f8f9fa;">
+    <div class="card shadow-lg border-0 rounded-4" style="max-width: 420px; width: 100%;">
+        <div class="card-body text-center p-5">
+            <!-- Icono de calendario -->
+            <div class="mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="#1dc8e9" class="bi bi-calendar-heart" viewBox="0 0 16 16">
+                    <path d="M4 .5a.5.5 0 0 1 .5.5V2h6V1a.5.5 0 0 1 1 0V2h1a2 2 0 0 1 2 2v1H1V4a2 2 0 0 1 2-2h1V1a.5.5 0 0 1 .5-.5zM1 5v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5H1zm8.5 2.5a2.5 2.5 0 0 1 2.5 2.5c0 1.657-2.5 3.5-2.5 3.5s-2.5-1.843-2.5-3.5a2.5 2.5 0 0 1 2.5-2.5z"/>
+                </svg>
+            </div>
+
+            <!-- Título y descripción -->
+            <h1 class="fw-bold mb-3" style="color:#1dc8e9;">Bienvenido a Citas Médicas</h1>
+            <p class="lead mb-4">
+                Bienvenido. Aquí puedes gestionar y agendar tus citas médicas de manera sencilla y rápida.
+            </p>
+
+            <!-- Botón principal -->
+            <a asp-area="" asp-controller="Citas" asp-action="Agendar" class="btn btn-success btn-lg px-5 shadow-sm">
+                Agendar Nueva Cita
+            </a>
+        </div>
+    </div>
+</div>

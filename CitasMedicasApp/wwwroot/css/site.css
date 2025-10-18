@@ -1,0 +1,40 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* Barra superior verde agua */
+.agua-navbar {
+  background: linear-gradient(90deg, #1de9b6 0%, #1dc8e9 100%);
+  border-bottom: 4px solid #fff;
+  min-height: 64px;
+}
+.agua-navbar .navbar-brand, .agua-navbar .nav-link {
+  color: #fff !important;
+  font-size: 1.15rem;
+}
+.agua-navbar .nav-link.active, .agua-navbar .nav-link:focus, .agua-navbar .nav-link:hover {
+  color: #e0f7fa !important;
+  text-shadow: 0 1px 2px #1dc8e9;
+}
+.agua-navbar .navbar-brand svg {
+  margin-right: 6px;
+}
