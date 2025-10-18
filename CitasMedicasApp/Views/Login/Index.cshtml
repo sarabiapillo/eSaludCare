@@ -1,0 +1,31 @@
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="d-flex align-items-center justify-content-center" style="min-height: 80vh;">
+    <div class="card shadow border-0" style="width: 100%; max-width: 400px;">
+        <div class="card-body p-4">
+            <h2 class="mb-4 text-center">Iniciar Sesión</h2>
+            @if (ViewBag.Mensaje != null)
+            {
+                <div class="alert alert-success text-center">@ViewBag.Mensaje</div>
+            }
+            <form asp-action="Index" method="post">
+                <div class="mb-3">
+                    <label for="correo" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="correo" name="correo" required />
+                </div>
+                <div class="mb-3">
+                    <label for="contrasena" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="contrasena" name="contrasena" required />
+                </div>
+                <div class="d-grid mb-2">
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                </div>
+                <div class="text-center">
+                    <a asp-action="Registro" class="link-primary">¿No tienes cuenta? Regístrate</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

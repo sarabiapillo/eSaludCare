@@ -1,0 +1,7 @@
+/var/www/CitasMedicasApp/publish/CitasMedicasApp
+/var/www/CitasMedicasApp/publish/appsettings.Development.json
+/var/www/CitasMedicasApp/publish/appsettings.json
+/var/www/CitasMedicasApp/publish/CitasMedicasApp.dll
+/var/www/CitasMedicasApp/publish/CitasMedicasApp.deps.json
+/var/www/CitasMedicasApp/publish/CitasMedicasApp.runtimeconfig.json
+/var/www/CitasMedicasApp/publish/CitasMedicasApp.pdb
